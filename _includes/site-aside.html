@@ -9,6 +9,11 @@
     <section class="section  section--category-index">
       {{ site.guide_categories }}
       <h3>TOC1</h3>
+      {% for item in site.guide_categories %}
+      <li class="item  item--category">
+        <a href="#{{ item | slugify }}">{{ item }}</a>
+      </li>
+      {% endfor %}
       {% include guide-categories.html %}
     </section>
 
