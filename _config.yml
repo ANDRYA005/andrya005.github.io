@@ -55,6 +55,7 @@ social: # jekyll-seo-tag > social overrides
  
 guide_categories:
   - Setting up the Client Pis
+  - Test
 
 # 4. Jekyll settings
 sass:
