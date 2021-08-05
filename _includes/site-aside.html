@@ -7,6 +7,7 @@
   
   {% elsif page.layout == "guide" %}
     <section class="section  section--category-index">
+      {{ site.guide_categories }}
       <h3>TOC</h3>
       {% include guide-categories.html %}
     </section>
