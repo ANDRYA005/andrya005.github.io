@@ -10,8 +10,8 @@ aside: false
 <aside class="aside  typeset  aside--{{ include.align | default: 'left' }}">
     <section class="section  section--category-index">
       <h3>TOC</h3>
-      - [Paste Your Document In Here](#setting-up-the-client-pis)
-        * [And a table of contents](#physical-device-setup)
+      - [Setting up the Client Pis](#setting-up-the-client-pis)
+        * [Physical Device Setup](#physical-device-setup)
     </section>
 </aside>
 
