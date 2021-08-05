@@ -7,138 +7,55 @@ excerpt: "A demo of Markdown and HTML includes"
 aside: true
 ---
 
-# Heading 1
 
-## Heading 2
+> #### What you will need:
+> - *n* x Raspberry Pi 4s (*n* will depend on your use case, we had 15)
+> - One micro SD card for initial setup of the Pis
+>   - Minimum 8GB
+> - A server computer (this can be a laptop, another Pi, a desktop computer or an actual server)
+>   - For any of these options, a decent storage capacity will be required (Minimum 64GB) to boot from and serve content to the client Pis
+>   - Depending on your use-case you may need a lot more storage (our server has a 480GB SSD which holds all the offline educational content)
+> - *n+2* ethernet cables
+> - A switch (with at least *n+2* ports)
+>   - This can be a gigabit switch (recommended) or a router configured to act as a switch
+> - 4G/LTE Router (use as DHCP server)
+> - *n* x accessories for each of the Pis
+>   - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies, headphones etc.
 
-### Heading 3
+### Setting up the Client Pis
+- You will need to first boot the Pis from an SD card. In order to do this, we recommend you use [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to write your chosen OS ([Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
 
-#### Heading 4
+- Then repeat the following for each of the Raspberry Pi 4s that are going to be used as client devices:
+  - Insert the SD card into the Pi and connect the power supply
+  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting
+  - Once booted, go to the terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line: 
+  
+    `echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt`
+  
+    This adds "*program_usb_boot_mode=1*" to the end of the *config.txt* file. Now the Pi should be able to boot from a network.
 
-##### Heading 5
+  - Reboot the Raspberry Pi with `sudo reboot`
+  - Once it has rebooted, check that the OTP has been programmed by running the following command in the terminal:
 
-###### Heading 6
+    `vcgencmd otp_dump | grep 17:`
 
-<small>A small element</small>
+    If the output is  `0x3020000a`, then you have been successful.
 
-[A link](https://david.darn.es "A link")
-
-Lorem ipsum dolor sit amet, consectetur adip* isicing elit, sed do eiusmod *tempor incididunt ut labore et dolore magna aliqua.
-
-Duis aute irure dolor in [A link](https://david.darn.es "A link") reprehenderit in voluptate velit esse cillum **bold text** dolore eu fugiat nulla pariatur. Excepteur span element sint occaecat cupidatat non proident, sunt _italicised text_ in culpa qui officia deserunt mollit anim id `some code` est laborum.
-
-* An item
-* An item
-* An item
-* An item
-* An item
-
-1. Item one
-2. Item two
-3. Item three
-4. Item four
-5. Item five
-
-> A simple blockquote
-
-Some HTML...
-
-``` html
-<blockquote cite="http://www.imdb.com/title/tt0284978/quotes/qt1375101">
-  <p>You planning a vacation, Mr. Sullivan?</p>
-  <footer>
-    <a href="http://www.imdb.com/title/tt0284978/quotes/qt1375101">Sunways Security Guard</a>
-  </footer>
-</blockquote>
-```
-
-...CSS...
-
-``` css
-blockquote {
-  text-align: center;
-  font-weight: bold;
-}
-blockquote footer {
-  font-size: .8rem;
-}
-```
-
-...and JavaScript
-
-``` js
-const blockquote = document.querySelector("blockquote")
-const bolden = (keyString, string) =>
-  string.replace(new RegExp(keyString, 'g'), '<strong>'+keyString+'</strong>')
-
-blockquote.innerHTML = bolden("Mr. Sullivan", blockquote.innerHTML)
-```
-
-`Single line of code`
-
-## HTML Includes
-
-### Contact form
-
-{% include site-form.html %}
-
-``` html
-{% raw %}{% include site-form.html %}{% endraw %}
-```
-
-### Demo map embed
-
-{% include map.html id="1UT-2Z-Vg_MG_TrS5X2p8SthsJhc" title="Coffee shop map" %}
-
-``` html
-{% raw %}{% include map.html id="XXXXXX" title="Coffee shop map" %}{% endraw %}
-```
-
-### Button include
-
-{% include button.html text="A button" link="https://david.darn.es" %}
-
-{% include button.html text="A button with icon" link="https://twitter.com/daviddarnes" icon="twitter" %}
-
-``` html
-{% raw %}{% include button.html text="A button" link="https://david.darn.es" %}
-{% include button.html text="A button with icon" link="https://twitter.com/daviddarnes" icon="twitter" %}{% endraw %}
-```
-
-### Icon include
-
-{% include icon.html id="twitter" title="twitter" %} [{% include icon.html id="linkedin" title="twitter" %}](https://www.linkedin.com/in/daviddarnes)
-
-``` html
-{% raw %}{% include icon.html id="twitter" title="twitter" %}
-[{% include icon.html id="linkedin" title="twitter" %}](https://www.linkedin.com/in/daviddarnes){% endraw %}
-```
-
-### Video include
-
-{% include video.html id="zrkcGL5H3MU" title="Siteleaf tutorial video" %}
-
-``` html
-{% raw %}{% include video.html id="zrkcGL5H3MU" title="Siteleaf tutorial video" %}{% endraw %}
-```
+   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
+    - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
 
 
-### Image includes
+### Physical Device Setup
+The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (why not?)
 
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Image with caption" width="300" height="800" %}
+![WiringDiagram](WiringDiagram.png)
 
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Right aligned image" position="right" width="300" height="800" %}
+### Setting up the Server
+We have used a relively beefy desktop computer running [Pop!\_OS](https://pop.system76.com/) (other Linux distributions should/could work).
 
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Left aligned image" position="left" width="300" height="800" %}
+Once you have your server PC up and running, the first step is to install `piserver`. Follow the instructiona on [piserver's GitHub page](https://github.com/raspberrypi/piserver)
+\* You might need to run `sudo apt update` and `sudo apt upgrade` first
 
-{% include figure.html image="https://picsum.photos/1600/800?image=894" alt="Image with just alt text" %}
+...more needed here?
 
-``` html
-{% raw %}{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Image with caption" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Right aligned image" position="right" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/600/800?image=894" caption="Left aligned image" position="left" width="300" height="800" %}
-
-{% include figure.html image="https://picsum.photos/1600/800?image=894" alt="Image with just alt text" %}{% endraw %}
-```
+...continue adding from the "Bulungula Tech Centre Guide" in the drive
