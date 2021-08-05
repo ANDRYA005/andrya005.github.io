@@ -134,8 +134,8 @@ navigation_header:
   url: /finances/
 - title: Blog
   url: /blog/
-- title: Categories
-  url: /categories/
+# - title: Categories
+#   url: /categories/
 - title: Search
   url: /search/
 # - title: Fork Alembic
