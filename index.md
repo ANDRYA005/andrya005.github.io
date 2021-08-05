@@ -1,8 +1,6 @@
 ---
 title: Bulungula Tech Center
-<!-- feature_text: | -->
-<!--   ## Bulungula Tech Center -->
-<!--   A Jekyll boilerplate theme designed to be a starting point for any Jekyll website -->
+feature_text: |
 feature_image: "/assets/images/students_on_computers.jpeg"
 excerpt: "Tech center is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it."
 ---
