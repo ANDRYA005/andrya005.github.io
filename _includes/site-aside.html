@@ -17,7 +17,13 @@
       <h3>Index</h3>
       {% include nav-categories.html %}
     </section>
-
+  
+   {% elsif page.layout == "setup" %}
+    <section class="section  section--category-index">
+      <h3>TOC</h3>
+      {% include guide-categories.html %}
+    </section>
+  
   {% endif %}
 
 </aside>
