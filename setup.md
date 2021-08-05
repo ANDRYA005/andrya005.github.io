@@ -7,14 +7,6 @@ excerpt: "A demo of Markdown and HTML includes"
 aside: false
 ---
 
-<aside class="aside  typeset  aside--{{ include.align | default: 'left' }}">
-    <section class="section  section--category-index">
-      <h3>TOC</h3>
-      - [Setting up the Client Pis](#setting-up-the-client-pis)
-        * [Physical Device Setup](#physical-device-setup)
-    </section>
-</aside>
-
 > #### What you will need:
 > - *n* x Raspberry Pi 4s (*n* will depend on your use case, we had 15)
 > - One micro SD card for initial setup of the Pis
@@ -29,7 +21,7 @@ aside: false
 > - *n* x accessories for each of the Pis
 >   - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies, headphones etc.
 
-# Setting up the Client Pis
+### Setting up the Client Pis
 - You will need to first boot the Pis from an SD card. In order to do this, we recommend you use [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to write your chosen OS ([Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
 
 - Then repeat the following for each of the Raspberry Pi 4s that are going to be used as client devices:
@@ -52,7 +44,7 @@ aside: false
     - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
 
 
-## Physical Device Setup
+### Physical Device Setup
 The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (why not?)
 
 ![WiringDiagram](WiringDiagram.png)
